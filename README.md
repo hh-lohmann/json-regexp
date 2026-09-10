@@ -94,7 +94,7 @@ but there is no way to store this in a string since the delimiter `/` to mark `i
 
 Instead of assuming that the content of a string is to be interpreted fully by RegExp mechanics except at positions that are explicitly marked to be interpreted literally you could go the other way round by assuming that the content is to be interpreted fully literally except at positions that are explicitly marked to be interpreted by RegExp mechanics.
 
-The first requirement is a marker for "interpret the next character not literally but by RegExp mechanics", i.e. a character that is neither already a RegExp or otherwise metacharacter, rather rarely used as a literal character but nevertheless available on a common keyboard, has good readability and ideally is easy to remember. A good candidate is the exclamation mark "!".
+The first requirement is a marker for "interpret the next character not literally but by RegExp mechanics", i.e. a character that is neither already a RegExp or otherwise metacharacter, rather rarely used as a literal character but nevertheless available on a common keyboard, has good readability and ideally is easy to remember. A good candidate is the backtick "`" (do not get confused by backticks in JavaScript for template literals and in Markdown to designate code examples / code blocks - such constructs are usually not what you try to match RegExps with).
 
 With this you could write
 
@@ -111,7 +111,7 @@ to be interpreted as RegExp
 and
 
 ```
-'a!+b'
+'a`+b'
 ```
 
 to be interpreted as RegExp
@@ -123,7 +123,7 @@ to be interpreted as RegExp
 and
 
 ```
-'!^...!$'
+'`^...`$'
 ```
 
 to be interpreted as RegExp
@@ -132,30 +132,30 @@ to be interpreted as RegExp
 /^\.\.\.$/
 ```
 
-To use an exclamation mark as a literal character you would quote it like a backslash in a RegExp by doubling it, so that e.g.
+To use a backtick as a literal character you would quote it like a backslash in a RegExp by doubling it, so that e.g.
 
 ```
-'a!!+b'
+'a``+b'
 ```
 
 would be interpreted as RegExp
 
 ```
-/a!+b/
+/a`+b/
 ```
 
 i.e. matching e.g.
 
 ```
-a!b
-a!!b
-a!!!b
+a`b
+a``b
+a```b
 ```
 
 To support flags you could allow a quoted `/` to the end of a jsonRegExp string followed by letters that qualify as flags, so that e.g.
 
 ```
-'ab!/i'
+'ab`/i'
 ```
 
 would be interpreted as RegExp
@@ -176,7 +176,7 @@ would be a literal `/` as in
 /ab\/i/
 ```
 
-You may validate the special use of `!/` by throwing an error if is used more than once or not to the end or not followed by valid flags.
+You may validate the special use of ``/` by throwing an error if is used more than once or not to the end or not followed by valid flags.
 
 
 

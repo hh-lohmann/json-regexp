@@ -6,7 +6,7 @@
     "name": "hh lohmann",
     "email": "hh.lohmann@gmail.com"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hh-lohmann/json-regexp.git"
@@ -14,7 +14,6 @@
   "bugs": "https://github.com/hh-lohmann/json-regexp/issues",
   "homepage": "https://hh-lohmann.github.io/json-regexp",
   "commits-to-changelog": {
-    "useDateGroups": "always",
     "linesToReadme": 3
   }
 }
